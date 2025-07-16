@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,5 +25,14 @@ public class EnemyController : MonoBehaviour
             _direction.x * movementSpeed,
             _direction.y * movementSpeed
         );
+    }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        bool isCollidedWithPlayer = other.gameObject.CompareTag("Player");
+        if (isCollidedWithPlayer)
+        {
+            Destroy(gameObject);
+        }
     }
 }

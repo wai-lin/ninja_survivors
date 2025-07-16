@@ -19,10 +19,8 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("MoveX", inputX);
         animator.SetFloat("MoveY", inputY);
 
-        if (playerMoveDirection == Vector3.zero)
-            animator.SetBool("Moving", false);
-        else
-            animator.SetBool("Moving", true);
+        bool moving = playerMoveDirection != Vector3.zero;
+        animator.SetBool("Moving", moving);
     }
 
     private void FixedUpdate()

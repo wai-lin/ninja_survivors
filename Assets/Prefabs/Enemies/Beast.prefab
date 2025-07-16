@@ -165,6 +165,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 8216116612244726286}
   rigidBody: {fileID: 2565343738346402022}
   movementSpeed: 0.6
+  destroyEffect: {fileID: 5923262150532713316, guid: 6889064adc2ae45f79931bd23b2ed52b, type: 3}
 --- !u!95 &7905110461372578436
 Animator:
   serializedVersion: 5

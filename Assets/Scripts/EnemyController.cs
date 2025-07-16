@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Rigidbody2D rigidBody;
     [SerializeField] private float movementSpeed;
     private Vector3 _direction;
+    [SerializeField] private GameObject destroyEffect;
 
     void FixedUpdate()
     {
@@ -27,12 +28,17 @@ public class EnemyController : MonoBehaviour
         );
     }
 
-    private void OnCollisionStay2D(Collision2D other)
+    void OnCollisionStay2D(Collision2D other)
     {
         bool isCollidedWithPlayer = other.gameObject.CompareTag("Player");
         if (isCollidedWithPlayer)
         {
             Destroy(gameObject);
+            Instantiate(
+                destroyEffect,
+                transform.position,
+                transform.rotation
+            );
         }
     }
 }

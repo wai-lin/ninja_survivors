@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Scenes/Game");
     }
 
-    public void TogglePause()
+    private void TogglePause()
     {
         // ignore if game over screen is already shown
         if (UIController.Instance.gameOverPanel.activeSelf) return;
@@ -45,5 +45,15 @@ public class GameManager : MonoBehaviour
         bool newPausedState = !UIController.Instance.pausePanel.activeSelf;
         UIController.Instance.pausePanel.SetActive(newPausedState);
         Time.timeScale = newPausedState ? 0f : 1f;
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Scenes/MainMenu");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

@@ -6,22 +6,29 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
+    private static readonly int MoveX = Animator.StringToHash("MoveX");
+    private static readonly int MoveY = Animator.StringToHash("MoveY");
+    private static readonly int Moving = Animator.StringToHash("Moving");
 
     [SerializeField] private Rigidbody2D rigidBody;
     [SerializeField] private Animator animator;
     [SerializeField] private float movementSpeed;
     public Vector3 playerMoveDirection;
+    public float playerMaxHealth;
+    public float playerCurrentHealth;
 
-    private void Awake()
+    void Awake()
     {
         if (Instance != null && Instance != this)
-        {
             Destroy(this);
-        }
         else
-        {
             Instance = this;
-        }
+    }
+
+    void Start()
+    {
+        playerCurrentHealth = playerMaxHealth;
+        UIController.Instance.UpdateHealthSlider();
     }
 
     void Update()
@@ -30,18 +37,28 @@ public class PlayerController : MonoBehaviour
         float inputY = Input.GetAxisRaw("Vertical");
         playerMoveDirection = new Vector3(inputX, inputY).normalized;
 
-        animator.SetFloat("MoveX", inputX);
-        animator.SetFloat("MoveY", inputY);
+        animator.SetFloat(MoveX, inputX);
+        animator.SetFloat(MoveY, inputY);
 
         bool moving = playerMoveDirection != Vector3.zero;
-        animator.SetBool("Moving", moving);
+        animator.SetBool(Moving, moving);
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         rigidBody.velocity = new Vector2(
             playerMoveDirection.x * movementSpeed,
             playerMoveDirection.y * movementSpeed
         );
+    }
+
+    public void TakeDamage(float damage)
+    {
+        playerCurrentHealth -= damage;
+        UIController.Instance.UpdateHealthSlider();
+        if (playerCurrentHealth <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

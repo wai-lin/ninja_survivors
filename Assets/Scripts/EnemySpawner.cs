@@ -22,8 +22,12 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
+        // don't spawn enemies when player is dead
+        if (!PlayerController.Instance.gameObject.activeSelf) return;
+        
         _currentWave = waves[waveNumber];
 
+        // increment spawnTimer and reset periodically
         _currentWave.spawnTimer += Time.deltaTime;
         if (_currentWave.spawnTimer >= _currentWave.spawnInterval)
         {
@@ -31,6 +35,9 @@ public class EnemySpawner : MonoBehaviour
             SpawnEnemy();
         }
 
+        // reset spawn count after reaching the wave spawn count,
+        // reduce the spawnInterval by 5% for next wave to increase difficulty,
+        // and proceed to next wave
         if (_currentWave.spawnedEnemiesCount >= _currentWave.enemiesPerWave)
         {
             _currentWave.spawnedEnemiesCount = 0;
@@ -39,6 +46,7 @@ public class EnemySpawner : MonoBehaviour
             waveNumber++;
         }
 
+        // reset to wave 1 when all the wave are spawned
         if (waveNumber >= waves.Count)
         {
             waveNumber = 0;

@@ -13,6 +13,13 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
+        // stop enemies if player is dead
+        if (!PlayerController.Instance.gameObject.activeSelf)
+        {
+            rigidBody.velocity = Vector2.zero;
+            return;
+        };
+        
         // enemy faces towards player
         bool isPlayerOnRightSide = PlayerController.Instance.transform.position.x
                                    > transform.position.x;
@@ -33,6 +40,7 @@ public class EnemyController : MonoBehaviour
         bool isCollidedWithPlayer = other.gameObject.CompareTag("Player");
         if (isCollidedWithPlayer)
         {
+            PlayerController.Instance.TakeDamage(1);
             Destroy(gameObject);
             Instantiate(
                 destroyEffect,

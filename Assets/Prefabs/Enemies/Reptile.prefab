@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9159617938916764325}
   m_Layer: 0
   m_Name: Reptile
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 45293779
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -1461293994, guid: c573f851e078a4080821d86bc7c76a1f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -124,6 +124,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 3884364524112318424}
   rigidBody: {fileID: 6514719177618317684}
   movementSpeed: 0.48
+  damage: 10
+  health: 10
   destroyEffect: {fileID: 5923262150532713316, guid: 6889064adc2ae45f79931bd23b2ed52b, type: 3}
 --- !u!50 &6514719177618317684
 Rigidbody2D:

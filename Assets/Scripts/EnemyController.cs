@@ -8,8 +8,17 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Rigidbody2D rigidBody;
     [SerializeField] private float movementSpeed;
+    [SerializeField] private float damage;
+    [SerializeField] private float health;
+
     private Vector3 _direction;
     [SerializeField] private GameObject destroyEffect;
+
+    void Start()
+    {
+        // to account for the FixedUpdate time frame size of 50
+        health *= 50;
+    }
 
     void FixedUpdate()
     {
@@ -18,8 +27,10 @@ public class EnemyController : MonoBehaviour
         {
             rigidBody.velocity = Vector2.zero;
             return;
-        };
-        
+        }
+
+        ;
+
         // enemy faces towards player
         bool isPlayerOnRightSide = PlayerController.Instance.transform.position.x
                                    > transform.position.x;
@@ -38,9 +49,14 @@ public class EnemyController : MonoBehaviour
     void OnCollisionStay2D(Collision2D other)
     {
         bool isCollidedWithPlayer = other.gameObject.CompareTag("Player");
-        if (isCollidedWithPlayer)
+        if (isCollidedWithPlayer) PlayerController.Instance.TakeDamage(damage);
+    }
+
+    public void TakeDamage(float incomingDamage)
+    {
+        health -= incomingDamage;
+        if (health <= 0)
         {
-            PlayerController.Instance.TakeDamage(1.0f);
             Destroy(gameObject);
             Instantiate(
                 destroyEffect,

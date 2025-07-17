@@ -48,6 +48,9 @@ TagManager:
   - name: Decorations
     uniqueID: 961691643
     locked: 0
+  - name: Weapons
+    uniqueID: 869986681
+    locked: 0
   - name: Objects
     uniqueID: 45293779
     locked: 0

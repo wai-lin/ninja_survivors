@@ -16,7 +16,11 @@ public class PlayerController : MonoBehaviour
     public Vector3 playerMoveDirection;
     public float playerMaxHealth;
     public float playerCurrentHealth;
+
     public int experience;
+    public int currentLevel = 1;
+    public int maxLevel;
+    public List<int> playerLevels;
 
     private bool _isImmune;
     [SerializeField] private float immunityDuration;
@@ -32,6 +36,13 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        for (int i = playerLevels.Count; i < maxLevel; i++)
+        {
+            playerLevels.Add(
+                Mathf.CeilToInt(playerLevels[^1] * 1.1f + 15)
+            );
+        }
+
         playerCurrentHealth = playerMaxHealth;
         UIController.Instance.UpdateHealthSlider();
     }
@@ -82,5 +93,6 @@ public class PlayerController : MonoBehaviour
     public void GetExperience(int expToAdd)
     {
         experience += expToAdd;
+        UIController.Instance.UpdateExperienceSlider();
     }
 }

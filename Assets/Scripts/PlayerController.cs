@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
         if (playerCurrentHealth <= 0)
         {
             gameObject.SetActive(false);
+            GameManager.Instance.GameOver();
         }
     }
 }

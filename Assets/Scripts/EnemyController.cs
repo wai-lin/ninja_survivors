@@ -40,7 +40,7 @@ public class EnemyController : MonoBehaviour
         bool isCollidedWithPlayer = other.gameObject.CompareTag("Player");
         if (isCollidedWithPlayer)
         {
-            PlayerController.Instance.TakeDamage(1);
+            PlayerController.Instance.TakeDamage(1.0f);
             Destroy(gameObject);
             Instantiate(
                 destroyEffect,

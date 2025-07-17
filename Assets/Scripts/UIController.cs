@@ -10,6 +10,8 @@ public class UIController : MonoBehaviour
     public static UIController Instance;
     [SerializeField] private Slider playerHealthSlider;
     [SerializeField] private TMP_Text playerHealthText;
+    public GameObject gameOverPanel;
+    public GameObject pausePanel;
 
     private void Awake()
     {

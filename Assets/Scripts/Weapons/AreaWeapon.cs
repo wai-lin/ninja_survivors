@@ -9,8 +9,9 @@ public class AreaWeapon : MonoBehaviour
 
     public float cooldown = 5f;
     public float duration = 3f;
-    public float damage = 1f;
     public float range = 1f;
+    public float damage = 1f;
+    public float damageSpeed = 0.5f;
 
     void Update()
     {

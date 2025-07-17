@@ -14,12 +14,6 @@ public class EnemyController : MonoBehaviour
     private Vector3 _direction;
     [SerializeField] private GameObject destroyEffect;
 
-    void Start()
-    {
-        // to account for the FixedUpdate time frame size of 50
-        health *= 50;
-    }
-
     void FixedUpdate()
     {
         // stop enemies if player is dead
@@ -55,6 +49,7 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage(float incomingDamage)
     {
         health -= incomingDamage;
+        DamageNumberController.Instance.CreateNumber(incomingDamage, transform.position);
         if (health <= 0)
         {
             Destroy(gameObject);

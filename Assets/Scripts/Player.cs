@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
 
         playerCurrentHealth = playerMaxHealth;
         UIController.Instance.UpdateHealthSlider();
+        UIController.Instance.UpdateExperienceSlider();
     }
 
     void Update()
@@ -93,6 +94,14 @@ public class Player : MonoBehaviour
     public void GetExperience(int expToAdd)
     {
         experience += expToAdd;
+        UIController.Instance.UpdateExperienceSlider();
+        if (experience >= playerLevels[currentLevel - 1]) LevelUp();
+    }
+
+    public void LevelUp()
+    {
+        experience -= playerLevels[currentLevel - 1];
+        currentLevel++;
         UIController.Instance.UpdateExperienceSlider();
     }
 }

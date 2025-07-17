@@ -31,11 +31,12 @@ public class UIController : MonoBehaviour
 
     public void UpdateExperienceSlider()
     {
+        string level = $"LVL: {Player.Instance.currentLevel}";
         playerExperienceSlider.maxValue = Player.Instance.playerLevels[
             Player.Instance.currentLevel - 1
         ];
         playerExperienceSlider.value = Player.Instance.experience;
-        playerExperienceText.text = $"{playerExperienceSlider.value} / {playerExperienceSlider.maxValue}";
+        playerExperienceText.text = $"{level}   ({playerExperienceSlider.value} / {playerExperienceSlider.maxValue})";
     }
     
     public void UpdateHealthSlider()

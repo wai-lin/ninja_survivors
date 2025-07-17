@@ -177,12 +177,12 @@ MonoBehaviour:
     duration: 3
     range: 1.2
     damage: 1
-    damageSpeed: 0.5
+    damageSpeed: 0.3
   - cooldown: 5
     duration: 3
     range: 1.6
     damage: 2
-    damageSpeed: 0.3
+    damageSpeed: 0.2
   prefab: {fileID: 2920970605704792176, guid: 1cd393834092e4fe18b2c9abbf32604a, type: 3}
 --- !u!1 &8161416
 GameObject:
@@ -2347,8 +2347,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 180, y: -120}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchoredPosition: {x: 260, y: -120}
+  m_SizeDelta: {x: 450, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1551395149
 MonoBehaviour:
@@ -2621,24 +2621,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - enemyPrefab: {fileID: 3425942805360998843, guid: 474606406f833406b843db7250ac13f3, type: 3}
-    spawnTimer: 0
-    spawnInterval: 1.2
-    enemiesPerWave: 10
-    spawnedEnemiesCount: 0
   - enemyPrefab: {fileID: 2972771224929113891, guid: a5b96b23c147f4d0092423a76efffed3, type: 3}
     spawnTimer: 0
-    spawnInterval: 0.8
-    enemiesPerWave: 15
+    spawnInterval: 1
+    enemiesPerWave: 30
+    spawnedEnemiesCount: 0
+  - enemyPrefab: {fileID: 3425942805360998843, guid: 474606406f833406b843db7250ac13f3, type: 3}
+    spawnTimer: 0
+    spawnInterval: 2
+    enemiesPerWave: 20
     spawnedEnemiesCount: 0
   - enemyPrefab: {fileID: 1380528568388168562, guid: a9f1144223fd649ccb82f9380937a6de, type: 3}
     spawnTimer: 0
-    spawnInterval: 1.5
-    enemiesPerWave: 8
+    spawnInterval: 5
+    enemiesPerWave: 5
     spawnedEnemiesCount: 0
   - enemyPrefab: {fileID: 3697345989617537472, guid: 105b264cbe7e84e4ab17254c4c736cdf, type: 3}
     spawnTimer: 0
-    spawnInterval: 2
+    spawnInterval: 8
     enemiesPerWave: 1
     spawnedEnemiesCount: 0
   waveNumber: 0
@@ -3025,8 +3025,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 180, y: -60}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchoredPosition: {x: 260, y: -60}
+  m_SizeDelta: {x: 450, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1821385611
 MonoBehaviour:

@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 playerMoveDirection;
     public float playerMaxHealth;
     public float playerCurrentHealth;
+    public int experience;
 
     private bool _isImmune;
     [SerializeField] private float immunityDuration;
@@ -76,5 +77,10 @@ public class PlayerController : MonoBehaviour
             gameObject.SetActive(false);
             GameManager.Instance.GameOver();
         }
+    }
+
+    public void GetExperience(int expToAdd)
+    {
+        experience += expToAdd;
     }
 }

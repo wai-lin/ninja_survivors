@@ -10,6 +10,10 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float movementSpeed;
     [SerializeField] private float damage;
     [SerializeField] private float health;
+    [SerializeField] private int experienceToGive;
+
+    [SerializeField] private float pushBackTime;
+    private float _pushBackCounter;
 
     private Vector3 _direction;
     [SerializeField] private GameObject destroyEffect;
@@ -23,7 +27,15 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        ;
+        // push back on damage taken
+        if (_pushBackCounter > 0)
+        {
+            _pushBackCounter -= Time.fixedDeltaTime;
+            // pushed back ~~vvv
+            if (movementSpeed > 0) movementSpeed = -movementSpeed;
+            // follow player ~~vvv
+            if (_pushBackCounter <= 0) movementSpeed = Mathf.Abs(movementSpeed);
+        }
 
         // enemy faces towards player
         bool isPlayerOnRightSide = PlayerController.Instance.transform.position.x
@@ -50,6 +62,10 @@ public class EnemyController : MonoBehaviour
     {
         health -= incomingDamage;
         DamageNumberController.Instance.CreateNumber(incomingDamage, transform.position);
+
+        // trigger push back when damage is taken
+        _pushBackCounter = pushBackTime;
+
         if (health <= 0)
         {
             Destroy(gameObject);
@@ -58,6 +74,7 @@ public class EnemyController : MonoBehaviour
                 transform.position,
                 transform.rotation
             );
+            PlayerController.Instance.GetExperience(experienceToGive);
         }
     }
 }

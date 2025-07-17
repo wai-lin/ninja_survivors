@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public bool gameActive;
+    public float gameTime;
 
-    private void Awake()
+    void Awake()
     {
         if (Instance != null && Instance != this)
             Destroy(this);
@@ -15,14 +18,28 @@ public class GameManager : MonoBehaviour
             Instance = this;
     }
 
+    void Start()
+    {
+        gameActive = true;
+    }
+
     void Update()
     {
+        // ignore if game is not active
+        if (!gameActive) return;
+        
+        // update game timer
+        gameTime += Time.deltaTime;
+        UIController.Instance.UpdateTimerText(gameTime);
+        
+        // toggle game pause state on escape key pressed
         if (Input.GetKeyDown(KeyCode.Escape))
             TogglePause();
     }
 
     public void GameOver()
     {
+        gameActive = false;
         StartCoroutine(ShowGameOverScreen());
     }
 
@@ -47,7 +64,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = newPausedState ? 0f : 1f;
     }
 
-    public void MainMenu()
+    public void GoToMainMenu()
     {
         SceneManager.LoadScene("Scenes/MainMenu");
     }

@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +12,7 @@ public class UIController : MonoBehaviour
     public static UIController Instance;
     [SerializeField] private Slider playerHealthSlider;
     [SerializeField] private TMP_Text playerHealthText;
+    [SerializeField] private TMP_Text timerText;
     public GameObject gameOverPanel;
     public GameObject pausePanel;
 
@@ -26,5 +29,13 @@ public class UIController : MonoBehaviour
         playerHealthSlider.maxValue = PlayerController.Instance.playerMaxHealth;
         playerHealthSlider.value = PlayerController.Instance.playerCurrentHealth;
         playerHealthText.text = $"{playerHealthSlider.value} / {playerHealthSlider.maxValue}";
+    }
+
+    public void UpdateTimerText(float time)
+    {
+        float min = Mathf.FloorToInt(time / 60f);
+        float sec = Mathf.FloorToInt(time % 60f);
+
+        timerText.text = $"{min}:{sec:00}";
     }
 }

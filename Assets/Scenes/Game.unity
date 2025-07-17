@@ -166,12 +166,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a767190930e43b18f8966cf04cdc04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponLevel: 1
+  stats:
+  - cooldown: 5
+    duration: 3
+    range: 1
+    damage: 1
+    damageSpeed: 0.5
+  - cooldown: 5
+    duration: 3
+    range: 1.2
+    damage: 1
+    damageSpeed: 0.5
+  - cooldown: 5
+    duration: 3
+    range: 1.6
+    damage: 2
+    damageSpeed: 0.3
   prefab: {fileID: 2920970605704792176, guid: 1cd393834092e4fe18b2c9abbf32604a, type: 3}
-  cooldown: 5
-  duration: 3
-  range: 1.2
-  damage: 2
-  damageSpeed: 0.4
 --- !u!1 &8161416
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,16 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AreaWeapon : MonoBehaviour
+public class AreaWeapon : Weapon
 {
     [SerializeField] private GameObject prefab;
     private float _spawnCounter;
-
-    public float cooldown = 5f;
-    public float duration = 3f;
-    public float range = 1f;
-    public float damage = 1f;
-    public float damageSpeed = 0.5f;
 
     void Update()
     {
@@ -19,7 +13,7 @@ public class AreaWeapon : MonoBehaviour
 
         if (_spawnCounter > 0) return;
 
-        _spawnCounter = cooldown;
+        _spawnCounter = stats[weaponLevel - 1].cooldown;
         Instantiate(
             prefab,
             transform.position,

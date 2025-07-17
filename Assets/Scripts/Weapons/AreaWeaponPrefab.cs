@@ -7,17 +7,21 @@ using UnityEngine.Serialization;
 public class AreaWeaponPrefab : MonoBehaviour
 {
     public AreaWeapon weapon;
+    private WeaponStats _currentWeaponStats;
+    
     private Vector3 _targetSize = Vector3.one * 3;
     private float _timer;
-    public List<EnemyController> enemiesInRange;
+    public List<Enemy> enemiesInRange;
     private float _damageCounter;
 
     void Start()
     {
         weapon = GameObject.Find("AreaWeapon").GetComponent<AreaWeapon>();
         transform.localScale = Vector3.zero;
-        _timer = weapon.duration;
-        _targetSize *= weapon.range;
+
+        _currentWeaponStats = weapon.stats[weapon.weaponLevel - 1];
+        _timer = _currentWeaponStats.duration;
+        _targetSize *= _currentWeaponStats.range;
     }
 
     void Update()
@@ -25,7 +29,7 @@ public class AreaWeaponPrefab : MonoBehaviour
         // grow and shrink towards target size
         transform.localScale = Vector3.MoveTowards(
             transform.localScale,
-            _targetSize * weapon.range,
+            _targetSize * _currentWeaponStats.range,
             Time.deltaTime * 5
         );
         _timer -= Time.deltaTime;
@@ -39,10 +43,10 @@ public class AreaWeaponPrefab : MonoBehaviour
         _damageCounter -= Time.deltaTime;
         if (_damageCounter <= 0)
         {
-            _damageCounter = weapon.damageSpeed;
+            _damageCounter = _currentWeaponStats.damageSpeed;
             foreach (var enemy in enemiesInRange)
             {
-                enemy.TakeDamage(weapon.damage);
+                enemy.TakeDamage(_currentWeaponStats.damage);
             }
         }
     }
@@ -50,12 +54,12 @@ public class AreaWeaponPrefab : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
-            enemiesInRange.Add(other.GetComponent<EnemyController>());
+            enemiesInRange.Add(other.GetComponent<Enemy>());
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
-            enemiesInRange.Remove(other.GetComponent<EnemyController>());
+            enemiesInRange.Remove(other.GetComponent<Enemy>());
     }
 }

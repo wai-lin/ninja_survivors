@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Rigidbody2D rigidBody;
@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour
     void FixedUpdate()
     {
         // stop enemies if player is dead
-        if (!PlayerController.Instance.gameObject.activeSelf)
+        if (!Player.Instance.gameObject.activeSelf)
         {
             rigidBody.velocity = Vector2.zero;
             return;
@@ -38,13 +38,13 @@ public class EnemyController : MonoBehaviour
         }
 
         // enemy faces towards player
-        bool isPlayerOnRightSide = PlayerController.Instance.transform.position.x
+        bool isPlayerOnRightSide = Player.Instance.transform.position.x
                                    > transform.position.x;
         spriteRenderer.flipX = isPlayerOnRightSide;
 
         // enemy moves towards player
         _direction = (
-            PlayerController.Instance.transform.position - transform.position
+            Player.Instance.transform.position - transform.position
         ).normalized;
         rigidBody.velocity = new Vector2(
             _direction.x * movementSpeed,
@@ -55,7 +55,7 @@ public class EnemyController : MonoBehaviour
     void OnCollisionStay2D(Collision2D other)
     {
         bool isCollidedWithPlayer = other.gameObject.CompareTag("Player");
-        if (isCollidedWithPlayer) PlayerController.Instance.TakeDamage(damage);
+        if (isCollidedWithPlayer) Player.Instance.TakeDamage(damage);
     }
 
     public void TakeDamage(float incomingDamage)
@@ -74,7 +74,7 @@ public class EnemyController : MonoBehaviour
                 transform.position,
                 transform.rotation
             );
-            PlayerController.Instance.GetExperience(experienceToGive);
+            Player.Instance.GetExperience(experienceToGive);
         }
     }
 }

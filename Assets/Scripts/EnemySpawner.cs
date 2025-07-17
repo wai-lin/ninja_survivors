@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         // don't spawn enemies when player is dead
-        if (!PlayerController.Instance.gameObject.activeSelf) return;
+        if (!Player.Instance.gameObject.activeSelf) return;
         
         _currentWave = waves[waveNumber];
 

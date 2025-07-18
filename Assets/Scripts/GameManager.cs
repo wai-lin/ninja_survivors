@@ -25,15 +25,18 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // ignore if game is not active
-        if (!gameActive) return;
+        bool isInMainMenuScene = SceneManager.GetActiveScene().name == "MainMenu";
+        
+        // ignore game updates if
+        // game is Not Active or in Main Menu Scene
+        if (!gameActive || isInMainMenuScene) return;
         
         // update game timer
         gameTime += Time.deltaTime;
         UIController.Instance.UpdateTimerText(gameTime);
         
         // toggle game pause state on escape key pressed
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
             TogglePause();
     }
 
@@ -67,6 +70,7 @@ public class GameManager : MonoBehaviour
     public void GoToMainMenu()
     {
         SceneManager.LoadScene("Scenes/MainMenu");
+        Time.timeScale = 1f;
     }
 
     public void QuitGame()

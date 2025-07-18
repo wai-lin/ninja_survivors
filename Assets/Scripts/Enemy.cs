@@ -62,6 +62,7 @@ public class Enemy : MonoBehaviour
     {
         health -= incomingDamage;
         DamageNumberController.Instance.CreateNumber(incomingDamage, transform.position);
+        AudioController.Instance.PlayModifiedSound(AudioController.Instance.enemyGetHit);
 
         // trigger push back when damage is taken
         _pushBackCounter = pushBackTime;

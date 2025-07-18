@@ -800,6 +800,7 @@ MonoBehaviour:
   resume: {fileID: 2078557517}
   gameOver: {fileID: 1194778761}
   enemyDie: {fileID: 1884178544}
+  enemyGetHit: {fileID: 1537618061}
   levelUpClick: {fileID: 2076276369}
   weaponSpawn: {fileID: 1076234075}
   weaponDespawn: {fileID: 1341596137}
@@ -3501,6 +3502,11 @@ PrefabInstance:
 --- !u!4 &1537618060 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3296911051085163548, guid: b797f34a5d8934bf7b563845d8c26f15, type: 3}
+  m_PrefabInstance: {fileID: 1537618059}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1537618061 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8062510988996408855, guid: b797f34a5d8934bf7b563845d8c26f15, type: 3}
   m_PrefabInstance: {fileID: 1537618059}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1551395147

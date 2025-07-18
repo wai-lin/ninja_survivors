@@ -11,6 +11,7 @@ public class AudioController : MonoBehaviour
     public AudioSource gameOver;
     
     public AudioSource enemyDie;
+    public AudioSource enemyGetHit;
     
     public AudioSource levelUpClick;
     

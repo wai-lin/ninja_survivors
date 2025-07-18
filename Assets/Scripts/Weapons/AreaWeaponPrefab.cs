@@ -44,9 +44,9 @@ public class AreaWeaponPrefab : MonoBehaviour
         if (_damageCounter <= 0)
         {
             _damageCounter = _currentWeaponStats.damageSpeed;
-            foreach (var enemy in enemiesInRange)
+            for (int i = 0; i < enemiesInRange.Count; i++)
             {
-                enemy.TakeDamage(_currentWeaponStats.damage);
+                enemiesInRange[i].TakeDamage(_currentWeaponStats.damage);
             }
         }
     }

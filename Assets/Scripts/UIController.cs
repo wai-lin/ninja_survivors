@@ -12,14 +12,17 @@ public class UIController : MonoBehaviour
     public static UIController Instance;
     [SerializeField] private Slider playerHealthSlider;
     [SerializeField] private TMP_Text playerHealthText;
-    
+
     [SerializeField] private Slider playerExperienceSlider;
     [SerializeField] private TMP_Text playerExperienceText;
-    
+
     [SerializeField] private TMP_Text timerText;
-    
+
     public GameObject gameOverPanel;
     public GameObject pausePanel;
+    
+    public GameObject levelUpPanel;
+    public LevelUpButton[] levelUpButtons;
 
     private void Awake()
     {
@@ -31,14 +34,13 @@ public class UIController : MonoBehaviour
 
     public void UpdateExperienceSlider()
     {
-        string level = $"LVL: {Player.Instance.currentLevel}";
         playerExperienceSlider.maxValue = Player.Instance.playerLevels[
             Player.Instance.currentLevel - 1
         ];
         playerExperienceSlider.value = Player.Instance.experience;
-        playerExperienceText.text = $"{level}   ({playerExperienceSlider.value} / {playerExperienceSlider.maxValue})";
+        playerExperienceText.text = $"LVL: {Player.Instance.currentLevel}";
     }
-    
+
     public void UpdateHealthSlider()
     {
         playerHealthSlider.maxValue = Player.Instance.playerMaxHealth;
@@ -52,5 +54,17 @@ public class UIController : MonoBehaviour
         float sec = Mathf.FloorToInt(time % 60f);
 
         timerText.text = $"{min}:{sec:00}";
+    }
+    
+    public void LevelUpPanelOpen()
+    {
+        levelUpPanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void LevelUpPanelClose()
+    {
+        levelUpPanel.SetActive(false);
+        Time.timeScale = 1f;
     }
 }

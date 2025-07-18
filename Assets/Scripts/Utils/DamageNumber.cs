@@ -20,7 +20,7 @@ public class DamageNumber : MonoBehaviour
         transform.position += Vector3.up * (Time.deltaTime * _floatSpeed);
     }
 
-    public void SetValue(int value)
+    public void SetValue(float value)
     {
         damageNumberText.text = value.ToSafeString();
     }

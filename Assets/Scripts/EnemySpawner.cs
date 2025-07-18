@@ -36,13 +36,13 @@ public class EnemySpawner : MonoBehaviour
         }
 
         // reset spawn count after reaching the wave spawn count,
-        // reduce the spawnInterval by 5% for next wave to increase difficulty,
+        // reduce the spawnInterval by 15% for next wave to increase difficulty,
         // and proceed to next wave
         if (_currentWave.spawnedEnemiesCount >= _currentWave.enemiesPerWave)
         {
             _currentWave.spawnedEnemiesCount = 0;
-            if (_currentWave.spawnInterval > 0.3f)
-                _currentWave.spawnInterval *= 0.95f; // spawn rate 5% faster on next wave
+            if (_currentWave.spawnInterval > 1.5f)
+                _currentWave.spawnInterval *= 0.85f; // spawn rate 15% faster on next wave
             waveNumber++;
         }
 

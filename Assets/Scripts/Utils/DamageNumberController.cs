@@ -18,6 +18,6 @@ public class DamageNumberController : MonoBehaviour
     public void CreateNumber(float value, Vector3 position)
     {
         DamageNumber damageNumber = Instantiate(prefab, position, transform.rotation, transform);
-        damageNumber.SetValue(Mathf.RoundToInt(value));
+        damageNumber.SetValue(value);
     }
 }

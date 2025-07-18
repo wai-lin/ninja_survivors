@@ -166,9 +166,9 @@ MonoBehaviour:
   rigidBody: {fileID: 2565343738346402022}
   movementSpeed: 0.6
   damage: 4
-  health: 8
+  health: 20
   experienceToGive: 6
-  pushBackTime: 0.4
+  pushBackTime: 0.3
   destroyEffect: {fileID: 5923262150532713316, guid: 6889064adc2ae45f79931bd23b2ed52b, type: 3}
 --- !u!95 &7905110461372578436
 Animator:

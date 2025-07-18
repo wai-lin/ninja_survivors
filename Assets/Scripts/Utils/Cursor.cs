@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Cursor : MonoBehaviour
 {
-    [SerializeField] private Texture2D cursor;
+    [SerializeField] private Texture2D cursorTexture;
 
     void Start()
     {
-        UnityEngine.Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
+        UnityEngine.Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.ForceSoftware);
     }
 }

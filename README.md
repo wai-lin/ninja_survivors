@@ -1,6 +1,7 @@
 # Ninja Survivors
 
 > This is a final project of Unity Game Development class from HarbourSpace.
+>
 > Presentation Slide: [pitch slide](https://pitch.com/v/m13-ninjasurvivors---unity-game-development-qcdew2)
 
 

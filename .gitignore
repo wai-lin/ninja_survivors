@@ -100,3 +100,6 @@ InitTestScene*.unity*
 
 # Ignore MacOS specific file
 .DS_Store
+
+# Build folder
+web_builds/

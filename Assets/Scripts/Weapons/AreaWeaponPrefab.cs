@@ -22,6 +22,7 @@ public class AreaWeaponPrefab : MonoBehaviour
         _currentWeaponStats = weapon.stats[weapon.weaponLevel - 1];
         _timer = _currentWeaponStats.duration;
         _targetSize *= _currentWeaponStats.range;
+        AudioController.Instance.PlayModifiedSound(AudioController.Instance.weaponSpawn);
     }
 
     void Update()
@@ -36,7 +37,11 @@ public class AreaWeaponPrefab : MonoBehaviour
         if (_timer <= 0)
         {
             _targetSize = Vector3.zero;
-            if (transform.localScale.x == 0) Destroy(gameObject);
+            if (transform.localScale.x == 0)
+            {
+                Destroy(gameObject);
+                AudioController.Instance.PlayModifiedSound(AudioController.Instance.weaponDespawn);
+            }
         }
 
         // damage enemies periodically

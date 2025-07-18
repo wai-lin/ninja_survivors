@@ -75,6 +75,7 @@ public class Enemy : MonoBehaviour
                 transform.rotation
             );
             Player.Instance.GetExperience(experienceToGive);
+            AudioController.Instance.PlayModifiedSound(AudioController.Instance.enemyDie);
         }
     }
 }
